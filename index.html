@@ -1,0 +1,351 @@
+<!DOCTYPE1 html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkoAC - Simulasi & Edukasi Penghematan Energi AC</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                    <i class="fa-solid fa-snowflake text-xl animate-spin-slow"></i>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">EcoAC</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#simulasi" class="hover:text-emerald-500 transition">Simulasi AC</a>
+                <a href="#edukasi" class="hover:text-emerald-500 transition">Materi Edukasi</a>
+                <a href="#dokumentasi" class="hover:text-emerald-500 transition">Kegiatan 5 Hari</a>
+                <a href="#kelompok" class="hover:text-emerald-500 transition">Tim Kami</a>
+            </nav>
+
+            <!-- Dark Mode Toggle Button -->
+            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-emerald-400 transition">
+                <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
+                <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-lg text-amber-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center py-6 md:py-10">
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/50 inline-block mb-4">
+                <i class="fa-solid fa-leaf mr-1"></i> Gerakan Hemat Energi & Bijak Listrik
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+                Bijak Menggunakan AC, <br class="hidden sm:inline"><span class="bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent">Selamatkan Bumi & Dompet</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-300 text-base md:text-lg">
+                Pelajari dampak penggunaan AC berlebihan dari sudut pandang Agama, Sains, dan Sosial, serta hitung langsung efisiensi penggunaan energi Anda.
+            </p>
+        </section>
+
+        <!-- FITUR 3: Simulasi & Control Panel Suhu AC Interaktif -->
+        <section id="simulasi" class="scroll-mt-20">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/60">
+                <div class="text-center md:text-left mb-6">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2">
+                        <i class="fa-solid fa-temperature-arrow-down text-emerald-500"></i>
+                        Simulasi & Thermostat Remot AC Interaktif
+                    </h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Atur suhu AC Anda untuk melihat dampak langsung terhadap beban listrik, biaya bulanan, dan emisi karbon.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Virtual Remot AC -->
+                    <div class="lg:col-span-5 bg-gradient-to-b from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-950 p-6 rounded-2xl border border-slate-300 dark:border-slate-800 shadow-inner flex flex-col items-center">
+                        <!-- Display Screen Remot -->
+                        <div class="w-full bg-emerald-950/90 rounded-xl p-5 border-2 border-emerald-600/40 shadow-inner text-emerald-400 font-mono text-center relative overflow-hidden mb-6">
+                            <div class="flex justify-between items-center text-xs opacity-75 mb-2">
+                                <span><i class="fa-solid fa-wind"></i> AUTO FAN</span>
+                                <span id="ac-status-badge" class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px]">EFISIEN</span>
+                            </div>
+                            <div class="text-6xl font-bold my-2 tracking-tighter flex items-center justify-center">
+                                <span id="temp-display">24</span>
+                                <span class="text-3xl ml-1">°C</span>
+                            </div>
+                            <div class="text-xs text-emerald-300/80 mt-1" id="temp-recommendation-badge">
+                                Suhu Ideal Penghematan Energi
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="w-full space-y-4">
+                            <div class="flex items-center justify-center gap-4">
+                                <button id="btn-temp-down" class="w-14 h-14 rounded-full bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold text-xl flex items-center justify-center shadow-lg shadow-sky-500/30 transition">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="text-center px-4">
+                                    <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Set Suhu</span>
+                                    <span class="text-xs text-slate-400 dark:text-slate-500">18°C - 30°C</span>
+                                </div>
+                                <button id="btn-temp-up" class="w-14 h-14 rounded-full bg-rose-500 hover:bg-rose-600 active:scale-95 text-white font-bold text-xl flex items-center justify-center shadow-lg shadow-rose-500/30 transition">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+
+                            <!-- Temperature Range Slider -->
+                            <div class="px-2">
+                                <input type="range" id="temp-range" min="18" max="30" value="24" class="w-full h-2 bg-slate-300 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>18°C (Boros)</span>
+                                    <span>24°-26°C (Ideal)</span>
+                                    <span>30°C (Hemat)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metrics & Dynamic Feedback -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Metric Cards Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- Watt -->
+                            <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50">
+                                <div class="flex items-center gap-2 text-amber-500 mb-1">
+                                    <i class="fa-solid fa-bolt text-lg"></i>
+                                    <span class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Daya Listrik</span>
+                                </div>
+                                <div class="text-2xl font-bold text-slate-900 dark:text-white" id="val-watt">380 Watt</div>
+                                <span class="text-[11px] text-slate-400">Estimasi konsumsi daya</span>
+                            </div>
+
+                            <!-- Cost -->
+                            <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50">
+                                <div class="flex items-center gap-2 text-emerald-500 mb-1">
+                                    <i class="fa-solid fa-wallet text-lg"></i>
+                                    <span class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Biaya / Bulan</span>
+                                </div>
+                                <div class="text-2xl font-bold text-slate-900 dark:text-white" id="val-cost">Rp 132.000</div>
+                                <span class="text-[11px] text-slate-400">Asumsi 8 jam/hari</span>
+                            </div>
+
+                            <!-- Carbon -->
+                            <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50">
+                                <div class="flex items-center gap-2 text-rose-500 mb-1">
+                                    <i class="fa-solid fa-smog text-lg"></i>
+                                    <span class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Emisi Karbon</span>
+                                </div>
+                                <div class="text-2xl font-bold text-slate-900 dark:text-white" id="val-carbon">78 Kg CO2</div>
+                                <span class="text-[11px] text-slate-400">Per bulan penggunaan</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Recommendation Box -->
+                        <div id="recommendation-box" class="p-5 rounded-xl border transition-all duration-300 bg-emerald-50 border-emerald-200 dark:bg-emerald-950/30 dark:border-emerald-800/50">
+                            <h4 id="rec-title" class="font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check"></i> Pengaturan Sangat Efisien & Direkomendasikan!
+                            </h4>
+                            <p id="rec-desc" class="text-sm text-emerald-700 dark:text-emerald-400 mt-2 leading-relaxed">
+                                Suhu 24°C - 26°C adalah batas kenyamanan termal tubuh manusia di daerah tropis. Kompresor bekerja optimal tanpa over-work, menekan pengeluaran listrik hingga 30%.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FITUR 4: Materi Edukasi Multi-Slide / Tab Interaktif -->
+        <section id="edukasi" class="scroll-mt-20">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Pikir Ulang Sebelum Boros</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Mengapa pemborosan penggunaan AC harus dihentikan?</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center mb-6">
+                <div class="inline-flex p-1.5 bg-slate-200 dark:bg-slate-800 rounded-2xl gap-1 max-w-full overflow-x-auto">
+                    <button class="edu-tab-btn active px-5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap" data-tab="islam">
+                        <i class="fa-solid fa-kaaba text-amber-500"></i> Sudut Pandang Islam
+                    </button>
+                    <button class="edu-tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap" data-tab="sains">
+                        <i class="fa-solid fa-flask text-sky-500"></i> Sains & Teknologi
+                    </button>
+                    <button class="edu-tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 whitespace-nowrap" data-tab="sosial">
+                        <i class="fa-solid fa-users text-rose-500"></i> Dampak Sosial
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content Container -->
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/60 min-h-[300px]">
+                
+                            <!-- Tab 1: Islam -->
+            <div id="tab-islam" class="edu-tab-content space-y-6"> 
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4"> 
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2"> 
+                        <i class="fa-solid fa-book-quran text-amber-500"></i>Pemborosan Listrik dalam Perspektif Maqashid Syariah
+                    </h3> 
+                </div> 
+                <div class="w-full"> 
+                 <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-700"> 
+            
+                        <div class="flex-1">
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-1">Pelanggaran Prinsip Hifz al-Mal dan Hifz al-Bi'ah demi Keberlanjutan Hidup</h4> 
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"> 
+                                 Dalam kacamata Maqashid Syariah, hal ini melanggar dua nilai utama, yaitu Hifz al-Mal (menjaga harta) karena listrik adalah sumber daya dan amanah yang harus digunakan secara efisien dan tidak dihamburkan, serta Hifz al-Bi'ah / Hifz an-Nafs (menjaga jiwa dan lingkungan) karena pemborosan energi berkontribusi pada kerusakan alam yang akhirnya membahayakan kesehatan dan kehidupan manusia.
+                            </p> 
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+
+
+                <!-- Tab 2: Sains -->
+                <div id="tab-sains" class="edu-tab-content hidden space-y-6"> 
+                    <div class="border-b border-slate-200 dark:border-slate-700 pb-4"> 
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2"> 
+                        <i class="fa-solid fa-microscope text-sky-500"></i>Sisi Sains di Balik AC yang Menyala Sia-Sia</h3> 
+                    </div> 
+                    
+                    <!-- Perubahan di bawah ini: Menghapus grid dan menggunakan block atau w-full -->
+                    <div class="w-full"> 
+                        <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-700"> 
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">Ancaman di Balik AC yang Menyala Terus-Menerus </h4> 
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"> 
+                            Dari sisi sains, AC yang menyala terus-menerus tanpa digunakan akan meningkatkan carbon footprint dan emisi gas rumah kaca. AC menggunakan freyon dan daya listrik besar yang sebagian besar masih berasal dari energi fosil. Penggunaan yang tidak efisien akan mempercepat pemanasan global, meningkatkan beban listrik kampus, dan memperpendek siklus hidup perangkat AC itu sendiri.
+
+                        </p> 
+                        </div> 
+                    </div> 
+                 </div>
+
+
+                <!-- Tab 3: Sosial -->
+                <div id="tab-sosial" class="edu-tab-content hidden space-y-6">
+                    <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-earth-americas text-rose-500"></i> Sisi Sosial Pemborosan Listrik
+                        </h3>
+                    </div>
+                    <div class="w-full">
+                        <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                                Dari Tagihan Kampus hingga Polusi bagi Masyarakat Luas
+
+                            </h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                               Dari sisi sosial, dampak pemborosan listrik tidak hanya dirasakan oleh pihak kampus melalui tagihan listrik yang membengkak, tetapi juga oleh masyarakat luas. Energi yang terbuang adalah hak generasi mendatang. Selain itu, polusi udara akibat pembangkit listrik yang berlebihan paling berdampak pada anak-anak, lansia, dan masyarakat di sekitar area industri pembangkit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FITUR 6: Galeri Dokumentasi Kegiatan 7 Hari -->
+     <section id="dokumentasi" class="scroll-mt-20">
+    <div class="text-center mb-8">
+        <!-- KEMBALI DIUBAH KE 5 HARI -->
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Dokumentasi Kegiatan 5 Hari</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Jurnal riset & implementasi penghematan AC lapangan secara bertahap.</p>
+    </div>
+
+    <!-- Carousel Wrapper -->
+    <div class="relative bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-xl border border-slate-100 dark:border-slate-700/60 overflow-hidden">
+        
+        <!-- Slide Item Container -->
+        <div id="carousel-slides" class="relative min-h-[320px]">
+            <!-- Slides injected dynamically via JavaScript -->
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+            <button id="prev-slide" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-sm font-semibold transition flex items-center gap-2">
+                <i class="fa-solid fa-chevron-left"></i> Sebelum
+            </button>
+
+            <!-- Indicators (Titik bulat otomatis menyesuaikan menjadi 5 buah) -->
+            <div id="carousel-indicators" class="flex space-x-2">
+                <!-- Dots injected dynamically -->
+            </div>
+
+            <button id="next-slide" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition flex items-center gap-2">
+                Lanjut <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+
+        <!-- FITUR 5: Anggota Kelompok Tepat 3 Orang -->
+        <section id="kelompok" class="scroll-mt-20">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Tim Penyusun Proyek</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1"> Anggota Kelompok 1</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Member 1 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700/60 text-center flex flex-col items-center hover:-translate-y-1 transition duration-300">
+                    <img src="mizel.png" alt="Foto Member 1" class="w-24 h-24 rounded-full object-cover ring-4 ring-emerald-500/30 mb-4">
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Mizzel Esa Jenar</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">NIM: 263107040007</p>
+                   
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700/60 text-center flex flex-col items-center hover:-translate-y-1 transition duration-300">
+                    <img src="afiyah.png" alt="Foto Member 2" class="w-24 h-24 rounded-full object-cover ring-4 ring-emerald-500/30 mb-4">
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Afiyah Nuro Fahzriyah</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">NIM: 263107040023</p>
+                   
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700/60 text-center flex flex-col items-center hover:-translate-y-1 transition duration-300">
+                    <img src="navara.png" alt="Foto Member 3" class="w-24 h-24 rounded-full object-cover ring-4 ring-emerald-500/30 mb-4">
+                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">Nafara Nuraddina Sandi</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">NIM: 263107040025</p>
+                   
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p>Kelompok 1 Penghematan Energi .</p>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
